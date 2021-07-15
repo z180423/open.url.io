@@ -25,6 +25,9 @@
           );
         }
       }
+      function count_vv() {
+        ++document.getElementById("click-again").innerHTML;
+      }
     </script>
     <style>
       #url-id {
@@ -33,17 +36,17 @@
         height: 500px;
       }
       #left {
-          width: 50%;
+        width: 50%;
       }
     </style>
   </head>
   <body>
-    
     <div id="left">
-        <button type="button" onclick="open_url()" id="test-3">URL</button>
-        <button type="button" onclick="open_gid()" id="test-4">GID</button>
-        <hr />
-        <textarea id="url-id" placeholder="please write url!"></textarea>
+      <button type="button" onclick="count_vv()" id="click-again">0</button>
+      <button type="button" onclick="open_url()" id="test-3">URL</button>
+      <button type="button" onclick="open_gid()" id="test-4">GID</button>
+      <hr />
+      <textarea id="url-id" placeholder="please write url!"></textarea>
     </div>
   </body>
 </html>

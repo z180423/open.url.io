@@ -1,53 +1,68 @@
 <!DOCTYPE html>
 <html lang="zh">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>open the door~</title>
-    <script>
-      function open_url() {
-        var all_url = document.getElementById("url-id");
-        var every_url = all_url.value.split("\n");
-        for (var i = 0, len = every_url.length; i < len; i++) {
-          var url_n = every_url[i];
-          window.open(url_n);
-        }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>open the door~</title>
+  <script>
+    function open_url() {
+      var all_url = document.getElementById("url-id");
+      var every_url = all_url.value.split("\n");
+      for (var i = 0, len = every_url.length; i < len; i++) {
+        var url_n = every_url[i];
+        window.open(url_n);
       }
-      function open_gid() {
-        var all_url = document.getElementById("url-id");
-        var every_url = all_url.value.split("\n");
-        for (var i = 0, len = every_url.length; i < len; i++) {
-          var url_n = every_url[i];
-          window.open(
-            "https://gip.bytedance.net/top/content/article_detail?bizId=1&gid=" +
-              url_n
-          );
-        }
+    }
+    function open_gid() {
+      var all_url = document.getElementById("url-id");
+      var every_url = all_url.value.split("\n");
+      for (var i = 0, len = every_url.length; i < len; i++) {
+        var url_n = every_url[i];
+        window.open(
+          "https://gip.bytedance.net/top/content/article_detail?bizId=1&gid=" +
+          url_n
+        );
       }
-      function count_vv() {
-        ++document.getElementById("click-again").innerHTML;
-      }
-    </script>
-    <style>
-      #url-id {
-        resize: none;
-        width: 100%;
-        height: 500px;
-        font-size:16px;
-      }
-      #left {
-        width: 50%;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="left">
-      <button type="button" onclick="count_vv()" id="click-again">0</button>
-      <button type="button" onclick="open_url()" id="test-3">URL</button>
-      <button type="button" onclick="open_gid()" id="test-4">GID</button>
-      <hr />
-      <textarea id="url-id" placeholder="please write url!"></textarea>
-    </div>
-  </body>
+    }
+    function count_vv() {
+      ++document.getElementById("click-again").innerHTML;
+    }
+  </script>
+  <script type="text/javascript">
+    function calc() {
+      document.getElementById('lines').value = "共计"+document.getElementById('url-id').value.split("\n").length+"行";
+    }
+  </script>
+  <style>
+    #url-id {
+      resize: none;
+      width: 100%;
+      height: 500px;
+      font-size: 16px;
+    }
+
+    #left {
+      width: 50%;
+    }
+    #lines{
+      width:60px;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="left">
+    <button type="button" onclick="count_vv()" id="click-again">0</button>
+    <button type="button" onclick="open_url()" id="test-3">URL</button>
+    <button type="button" onclick="open_gid()" id="test-4">GID</button>
+
+    <input type="text" readonly="readonly" id="lines" />
+    <hr />
+    <textarea id="url-id" placeholder="please write url!" onkeyup="calc();"></textarea>
+  </div>
+</body>
+
 </html>

@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <link id="page_favicon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABKklEQVQ4T2NkwAL+L9v9Hyp899f9j8pQ9if26hB+dOWMBAxg+HX/I1wJe3UIhnoUgZ+ta8A2sylCLPpjOo+BgeE/w79VIWA+TJwxyhWuD6sBIMXf/JYx8HCxwG1nOZkKZxM0AF0zTCfMEJwGwALvo/wsBv6Vkgx/8l+A9bJMlGD4G/mW4e++QLDP2KtDWGGGongBKfQZvhvPYmBlQUj/WxGGNTBxG/DnIsNPw2PgcGC+68jw+7QoYQNgKmCxgRzyIDay37F6gWoGwAzyWVYLThdbopqxJjiwq5BTIkwDTFPIjm6wAWs8ShnR5bB6QT3IIUQ1xHb1zw9fGNgFeBg4hPjA6n68+8QAE7u9/qjzzdX79uENA5htyAbg8gpOv4E0IHsB2avIbIoNAADJ3YIRPsciPQAAAABJRU5ErkJggg==" rel="icon" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link id="page_favicon"
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABKklEQVQ4T2NkwAL+L9v9Hyp899f9j8pQ9if26hB+dOWMBAxg+HX/I1wJe3UIhnoUgZ+ta8A2sylCLPpjOo+BgeE/w79VIWA+TJwxyhWuD6sBIMXf/JYx8HCxwG1nOZkKZxM0AF0zTCfMEJwGwALvo/wsBv6Vkgx/8l+A9bJMlGD4G/mW4e++QLDP2KtDWGGGongBKfQZvhvPYmBlQUj/WxGGNTBxG/DnIsNPw2PgcGC+68jw+7QoYQNgKmCxgRzyIDay37F6gWoGwAzyWVYLThdbopqxJjiwq5BTIkwDTFPIjm6wAWs8ShnR5bB6QT3IIUQ1xHb1zw9fGNgFeBg4hPjA6n68+8QAE7u9/qjzzdX79uENA5htyAbg8gpOv4E0IHsB2avIbIoNAADJ3YIRPsciPQAAAABJRU5ErkJggg=="
+    rel="icon" type="image/x-icon" />
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+  <script src="clipboard.js"></script>
   <title>open the door~</title>
+  <!-- 第一个script：关于快捷打开URL -->
   <script>
+    //打开URL格式的网址
     function open_url() {
       var all_url = document.getElementById("url-id");
       var every_url = all_url.value.split("\n");
@@ -15,6 +22,7 @@
         window.open(url_n);
       }
     }
+    //打开GID数字格式的网址
     function open_gid() {
       var all_url = document.getElementById("url-id");
       var every_url = all_url.value.split("\n");
@@ -26,15 +34,99 @@
         );
       }
     }
-    function count_vv() {
+    //点击增1的按钮
+    function count_game_btn() {
       ++document.getElementById("click-again").innerHTML;
     }
-  </script>
-  <script type="text/javascript">
-    function calc() {
-      document.getElementById('lines').value = "共计"+document.getElementById('url-id').value.split("\n").length+"行";
+    //显示行数
+    function count_row_text() {
+      document.getElementById("lines").value =
+        "共计" +
+        document.getElementById("url-id").value.split("\n").length +
+        "行";
     }
   </script>
+  <!-- 第二个script：关于自动生成关键词话术 -->
+  <script>
+    const p2p_name_skill = {
+      抗癌: "癌症|癌细胞|肿瘤|恶性肿瘤|癌变|癌肿|抗癌|抗肿",
+      致癌: "癌症|癌细胞|肿瘤|恶性肿瘤|癌变|患癌|癌肿|致癌",
+      痛风: "痛风|尿酸|降尿酸|降酸",
+      降糖: "降糖|降血糖|降低血糖|糖尿病|天然胰岛素|植物胰岛素|天然降糖药",
+      降脂: "降脂|降血脂|降低血脂|高血脂|高脂血症|降胆固醇",
+      降压: "降压|降血压|降低血压|高血压",
+      降三高:
+        "降糖|降血糖|降低血糖|糖尿病|天然胰岛素|降脂|降血脂|降低血脂|高血脂|高脂血症|降胆固醇|降压|降血压|降低血压|高血压|降三高|三高",
+      银屑病: "银屑病|牛皮癣",
+      脚气: "脚气|脚癣|香港脚|足癣",
+      胃病: "胃炎|胃溃疡|胃癌|胃病",
+      幽门螺杆菌: "幽门螺杆菌|幽门螺旋杆菌|胃溃疡|胃癌|胃炎|胃病",
+      肠癌: "肠癌|结肠癌|直肠癌|结直肠癌|大肠癌",
+      老年痴呆: "痴呆|老年痴呆|阿尔茨海默|老痴",
+      腰间盘突出: "腰间盘|腰椎|腰椎间盘|腰痛|腰疼|腰突",
+      妇科炎症: "妇科炎症|妇科病|外阴炎|阴道炎|宫颈炎|盆腔炎",
+      妇科症状: "白带|分泌物|瘙痒|灼热|红肿|溃烂|异味",
+      腹泻: "腹泻|拉肚子|腹泄|泻肚|闹肚子|拉稀",
+      腹胀: "腹胀|胃胀|涨肚|胀肚",
+      消化不良:
+        "消化不良|不消化|消化不好|肚子痛|肚子疼|腹痛|腹胀|胃胀|涨肚|胀肚|早饱|嗳气|食欲不振|恶心|呕吐",
+      补血: "补血|贫血",
+      排毒: "排毒|毒素",
+      清肠: "清肠道|清肠",
+      催乳: "催乳|下奶|催奶|下乳|通奶|通乳",
+      减肥: "减肥|减重|减脂|瘦身|燃脂|能瘦|变瘦|瘦了",
+      衰老: "衰老|抗衰|延长寿命|延年益寿|延寿|逆龄",
+      壮阳: "壮阳|提高性能力|性能力|补肾",
+      失眠: "失眠|睡不着|睡眠差|失眠症",
+      美白: "白皙|美白|去黄|祛黄|色素沉着|肤色不均",
+      祛斑: "暗斑|黑斑|斑点|祛斑|淡斑|老年斑|褐斑|雀斑|色素沉积",
+      长斑: "生斑|长斑|暗斑|黑斑|斑点|淡斑|老年斑|褐斑|雀斑|色素沉积",
+      祛皱: "松弛|紧致|皱纹|鱼尾纹|细纹|去皱|去皱|法令纹|抗皱",
+      痘痘: "祛痘|青春痘|痘痘|痘痕|痘印|粉刺|白头|黑头",
+      皮肤衰老: "老化|初老|暗淡|粗糙|童颜|活化|抗氧化|暗沉",
+      保湿: "干燥|缺水|锁水|保湿|滋养|润泽|水润|光泽",
+      美容: "美容|白皙|美白|去黄|祛黄|色素沉着|肤色不均|嫩肤",
+      白发: "黑发|白发|头发变黑",
+      抗辐射: "辐射|防辐射|辐射线|射线",
+    };
+    //全选
+    function task_todo_allcheck(name) {
+      var task_all = document.getElementsByName(name);
+      for (var i = 0; i < task_all.length; i++) {
+        task_all[i].checked = true;
+      }
+    }
+    //词组多选功能，多选实现+格式化
+    function task_todo() {
+      var hobbies = document.getElementsByName("task_todo");
+      var value, key;
+      for (i = 0; i < hobbies.length; i++) {
+        if (hobbies[i].checked) {
+          if (!value) {
+            value = hobbies[i].value;
+            key = p2p_name_skill[value];
+          } else {
+            value += "、" + hobbies[i].value;
+            key += "|" + p2p_name_skill[hobbies[i].value];
+          }
+        }
+      }
+      document.getElementById("vs").innerHTML =
+        "已选择词组：" + (value == undefined ? "" : value); //功效
+      document.getElementById("vs_1").innerHTML =
+        value == undefined ? "" : key; //关键词
+    }
+    //复制,暂未使用
+    $(document).ready(function () {
+      var clipboard = new Clipboard("#copy_btn");
+      clipboard.on("success", function (e) {
+        alert("复制成功", 1500);
+        e.clearSelection();
+        console.log(e.clearSelection);
+      });
+    });
+  </script>
+
   <style>
     #url-id {
       resize: none;
@@ -44,27 +136,94 @@
     }
 
     #left {
-      width: 50%;
+      width: 40%;
+      position: absolute;
     }
-    #lines{
-      width:60px;
-      text-align:center;
+
+    #right {
+      width: 50%;
+      position: absolute;
+      top: 50px;
+      right: 0;
+    }
+
+    #lines {
+      width: 60px;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
   <div id="left">
-    <button type="button" onclick="count_vv()" id="click-again">0</button>
+    <button type="button" onclick="count_game_btn()" id="click-again">
+      0
+    </button>
     <button type="button" onclick="open_url()" id="test-3">URL</button>
     <button type="button" onclick="open_gid()" id="test-4">GID</button>
 
     <input type="text" readonly="readonly" id="lines" />
     <hr />
-    <textarea id="url-id" placeholder="please write url!" onkeyup="calc();"></textarea>
+    <textarea id="url-id" placeholder="please write url!" onkeyup="count_row_text();"></textarea>
+  </div>
+  <div id="right">
+    <fieldset>
+      <legend>多选！</legend>
+      <p>
+        <label for="task_todo">
+          <input type="checkbox" name="task_todo" value="抗癌" />抗癌
+          <input type="checkbox" name="task_todo" value="致癌" />致癌
+          <input type="checkbox" name="task_todo" value="痛风" />痛风
+          <input type="checkbox" name="task_todo" value="降糖" />降糖
+          <input type="checkbox" name="task_todo" value="降脂" />降脂
+          <input type="checkbox" name="task_todo" value="降压" />降压
+          <input type="checkbox" name="task_todo" value="降三高" />降三高<br>
+          <input type="checkbox" name="task_todo" value="银屑病" />银屑病
+          <input type="checkbox" name="task_todo" value="脚气" />脚气
+          <input type="checkbox" name="task_todo" value="胃病" />胃病
+          <input type="checkbox" name="task_todo" value="幽门螺杆菌" />幽门螺杆菌
+          <input type="checkbox" name="task_todo" value="肠癌" />肠癌
+          <input type="checkbox" name="task_todo" value="老年痴呆" />老年痴呆<br>
+          <input type="checkbox" name="task_todo" value="腰间盘突出" />腰间盘突出
+          <input type="checkbox" name="task_todo" value="妇科炎症" />妇科炎症
+          <input type="checkbox" name="task_todo" value="妇科症状" />妇科症状
+          <input type="checkbox" name="task_todo" value="腹泻" />腹泻
+          <input type="checkbox" name="task_todo" value="腹胀" />腹胀
+          <input type="checkbox" name="task_todo" value="消化不良" />消化不良<br>
+          <input type="checkbox" name="task_todo" value="补血" />补血
+          <input type="checkbox" name="task_todo" value="排毒" />排毒
+          <input type="checkbox" name="task_todo" value="清肠" />清肠
+          <input type="checkbox" name="task_todo" value="催乳" />催乳
+          <input type="checkbox" name="task_todo" value="减肥" />减肥
+          <input type="checkbox" name="task_todo" value="衰老" />衰老
+          <input type="checkbox" name="task_todo" value="壮阳" />壮阳
+          <input type="checkbox" name="task_todo" value="失眠" />失眠<hr>
+          <input type="checkbox" name="task_todo" value="美白" />美白
+          <input type="checkbox" name="task_todo" value="祛斑" />祛斑
+          <input type="checkbox" name="task_todo" value="长斑" />长斑
+          <input type="checkbox" name="task_todo" value="祛皱" />祛皱
+          <input type="checkbox" name="task_todo" value="痘痘" />痘痘<br>
+          <input type="checkbox" name="task_todo" value="皮肤衰老" />皮肤衰老
+          <input type="checkbox" name="task_todo" value="保湿" />保湿
+          <input type="checkbox" name="task_todo" value="美容" />美容
+          <input type="checkbox" name="task_todo" value="白发" />白发
+          <input type="checkbox" name="task_todo" value="抗辐射" />抗辐射
+          <hr />
+          <button type="button" class="line_1" value="组合" onclick="task_todo_allcheck('task_todo')">
+            全选
+          </button>
+          <button type="button" class="line_1" value="组合" onclick="task_todo()">
+            生成关键词
+          </button>
+          <hr />
+
+          <div id="vs">(✪ω✪)</div>
+          <div id="vs_1">(✪ω✪)</div>
+        </label>
+      </p>
+    </fieldset>
+    <hr />
   </div>
 </body>
 
 </html>
-
-

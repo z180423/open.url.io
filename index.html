@@ -55,7 +55,7 @@
             致癌: "癌症|癌细胞|肿瘤|恶性肿瘤|癌变|患癌|癌肿|致癌",
             痛风: "痛风|尿酸|降尿酸|降酸",
             降糖: "降糖|降血糖|降低血糖|糖尿病|天然胰岛素|植物胰岛素|天然降糖药",
-            降脂降胆固醇: "降脂|降血脂|降低血脂|高血脂|高脂血症|降胆固醇",
+            降脂: "降脂|降血脂|降低血脂|高血脂|高脂血症|降胆固醇",
             降压: "降压|降血压|降低血压|高血压",
             降三高: "降糖|降血糖|降低血糖|糖尿病|天然胰岛素|植物胰岛素|天然降糖药|降脂|降血脂|降低血脂|高血脂|高脂血症|降胆固醇|降压|降血压|降低血压|高血压|降三高|三高",
             银屑病: "银屑病|牛皮癣",
@@ -77,7 +77,7 @@
             减肥: "减肥|减重|减脂|瘦身|燃脂|能瘦|变瘦|瘦了",
             抗衰老: "衰老|抗衰|延长寿命|延年益寿|延寿|逆龄|长寿|不老|延年|延寿",
             壮阳: "壮阳|提高性能力|性能力|补肾",
-            失眠: "失眠|睡不着|睡眠差|失眠症",
+            失眠: "失眠|失眠症",
             美白: "白皙|美白|去黄|祛黄|色素沉着|肤色不均",
             祛斑: "暗斑|黑斑|斑点|祛斑|淡斑|老年斑|褐斑|雀斑|色素沉积",
             长斑: "生斑|长斑|暗斑|黑斑|斑点|淡斑|老年斑|褐斑|雀斑|色素沉积",
@@ -137,15 +137,15 @@
         }
 
         #left {
-            width: 40%;
+            width: 45%;
             position: absolute;
         }
 
         #right {
             width: 50%;
             position: absolute;
-            top: 50px;
-            right: 0;
+            top: 30px;
+            right: 10px;
         }
 
         #lines {
@@ -165,18 +165,10 @@
 
         <input type="text" readonly="readonly" id="lines" />
         <hr />
-        <textarea id="url-id" placeholder="please write url!" onkeyup="count_row_text();"></textarea>
-        <fieldset>
-            <legend>后缀！</legend>
-            <p>“XX治疗XX病”是虚假，食物没有任何治疗疾病功效 ，然后飘黄即可。</p>
-            <p>“XX预防XX病”是虚假，食物没有任何预防疾病功效 ，然后飘黄即可。</p>
-            <p>“预防与治疗”是虚假，食物没有任何治疗和预防功效 ，然后飘黄即可。</p>
-        </fieldset>
+        <textarea id="url-id" placeholder="用链接打开打开网址点URL，用gid打开网址点GID" onkeyup="count_row_text();"></textarea>
     </div>
     <div id="right">
-        
         <fieldset>
-
             <legend>词组！</legend>
             <p>
                 <label for="task_todo">
@@ -184,52 +176,55 @@
                     <input type="checkbox" name="task_todo" value="致癌" />致癌
                     <input type="checkbox" name="task_todo" value="痛风" />痛风
                     <input type="checkbox" name="task_todo" value="降糖" />降糖
-                    <input type="checkbox" name="task_todo" value="降脂降胆固醇" />降脂/降胆固醇
+                    <input type="checkbox" name="task_todo" value="降脂" />降脂
                     <input type="checkbox" name="task_todo" value="降压" />降压
-                    <input type="checkbox" name="task_todo" value="降三高" />降三高<br><br>
-                    <input type="checkbox" name="task_todo" value="银屑病" />银屑病
-                    <input type="checkbox" name="task_todo" value="脚气" />脚气
-                    <input type="checkbox" name="task_todo" value="胃病" />胃病
-                    <input type="checkbox" name="task_todo" value="幽门螺杆菌" />幽门螺杆菌
-                    <input type="checkbox" name="task_todo" value="肠癌" />肠癌
+                    <input type="checkbox" name="task_todo" value="降三高" />降三高
+                    <input type="checkbox" name="task_todo" value="消化不良" />消化不良
                     <input type="checkbox" name="task_todo" value="老年痴呆" />老年痴呆<br><br>
-                    <input type="checkbox" name="task_todo" value="腰间盘突出" />腰间盘突出
-                    <input type="checkbox" name="task_todo" value="妇科炎症" />妇科炎症
-                    <input type="checkbox" name="task_todo" value="妇科症状" />妇科症状
-                    <input type="checkbox" name="task_todo" value="腹泻" />腹泻
-                    <input type="checkbox" name="task_todo" value="腹胀" />腹胀
-                    <input type="checkbox" name="task_todo" value="消化不良" />消化不良<br><br>
-                    <input type="checkbox" name="task_todo" value="补血" />补血
+                    <input type="checkbox" name="task_todo" value="肠癌" />肠癌
                     <input type="checkbox" name="task_todo" value="排毒" />排毒
                     <input type="checkbox" name="task_todo" value="清肠" />清肠
                     <input type="checkbox" name="task_todo" value="催乳" />催乳
                     <input type="checkbox" name="task_todo" value="减肥" />减肥
-                    <input type="checkbox" name="task_todo" value="抗衰老" />抗衰老
                     <input type="checkbox" name="task_todo" value="壮阳" />壮阳
+                    <input type="checkbox" name="task_todo" value="抗衰老" />抗衰老
+                    <input type="checkbox" name="task_todo" value="妇科炎症" />妇科炎症
+                    <input type="checkbox" name="task_todo" value="妇科症状" />妇科症状<br><br>
                     <input type="checkbox" name="task_todo" value="失眠" />失眠
+                    <input type="checkbox" name="task_todo" value="补血" />补血
+                    <input type="checkbox" name="task_todo" value="脚气" />脚气
+                    <input type="checkbox" name="task_todo" value="胃病" />胃病
+                    <input type="checkbox" name="task_todo" value="腹泻" />腹泻
+                    <input type="checkbox" name="task_todo" value="腹胀" />腹胀
+                    <input type="checkbox" name="task_todo" value="银屑病" />银屑病
+                    <input type="checkbox" name="task_todo" value="腰间盘突出" />腰间盘突出
+                    <input type="checkbox" name="task_todo" value="幽门螺杆菌" />幽门螺杆菌
                     <hr>
                     <input type="checkbox" name="task_todo" value="美白" />美白
                     <input type="checkbox" name="task_todo" value="祛斑" />祛斑
                     <input type="checkbox" name="task_todo" value="长斑" />长斑
                     <input type="checkbox" name="task_todo" value="祛皱" />祛皱
-                    <input type="checkbox" name="task_todo" value="痘痘" />痘痘<br><br>
-                    <input type="checkbox" name="task_todo" value="皮肤衰老" />皮肤衰老
+                    <input type="checkbox" name="task_todo" value="痘痘" />痘痘
                     <input type="checkbox" name="task_todo" value="保湿" />保湿
                     <input type="checkbox" name="task_todo" value="美容" />美容
                     <input type="checkbox" name="task_todo" value="白发" />白发
                     <input type="checkbox" name="task_todo" value="抗辐射" />抗辐射
+                    <input type="checkbox" name="task_todo" value="皮肤衰老" />皮肤衰老
                     <hr />
                     <button type="button" class="line_1" value="组合"
                         onclick="task_todo_allcheck('task_todo')">全选</button>
                     <button type="button" class="line_1" value="组合" onclick="task_todo()">生成关键词</button>
-                    <button type="button" class="line_2" onclick="cleaner()">清空(按F5也一样)</button>
+                    <button type="button" class="line_2" onclick="cleaner()">清空+返回后缀警告</button>
                     <hr />
-                    <div id="vs">(✪ω✪)</div>
-                    <div id="vs_1">(✪ω✪)</div>
+                    <div id="vs">👉后缀警告！</div><hr>
+                    <div id="vs_1">
+                        <p>“XX治疗XX病”是虚假，食物没有任何治疗疾病功效 ，然后飘黄即可。</p>
+                        <p>“XX预防XX病”是虚假，食物没有任何预防疾病功效 ，然后飘黄即可。</p>
+                        <p>“预防与治疗”是虚假，食物没有任何治疗和预防功效 ，然后飘黄即可。</p>
+                    </div>
                 </label>
             </p>
         </fieldset>
-        <hr />
     </div>
 </body>
 

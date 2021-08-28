@@ -36,104 +36,34 @@
                 );
             }
         }
-        //点击增1的按钮
-        function count_game_btn() {
-            ++document.getElementById("click-again").innerHTML;
-        }
         //显示行数
         function count_row_text() {
-            document.getElementById("lines").value =
-                "共计" +
-                document.getElementById("url-id").value.split("\n").length +
-                "行";
+            if(document.getElementById("url-id").value === ""){
+                document.getElementById("lines").value ="共计0行";
+            }else{
+                document.getElementById("lines").value ="共计" + document.getElementById("url-id").value.split("\n").length + "行";
+            }
         }
     </script>
-    <!-- 第二个script：关于自动生成关键词话术 -->
+    <!-- 第二个script：关于快捷操作字符串 -->
     <script>
-        const p2p_name_skill = {
-            抗癌: "癌症|癌细胞|肿瘤|恶性肿瘤|癌变|癌肿|抗癌|抗肿瘤",
-            致癌: "癌症|癌细胞|肿瘤|恶性肿瘤|癌变|患癌|癌肿|致癌",
-            痛风: "痛风|尿酸|降尿酸|降酸",
-            降糖: "降糖|降血糖|降低血糖|糖尿病|天然胰岛素|植物胰岛素|天然降糖药",
-            降脂: "降脂|降血脂|降低血脂|高血脂|高脂血症|降胆固醇",
-            降压: "降压|降血压|降低血压|高血压",
-            降三高: "降糖|降血糖|降低血糖|糖尿病|天然胰岛素|植物胰岛素|天然降糖药|降脂|降血脂|降低血脂|高血脂|高脂血症|降胆固醇|降压|降血压|降低血压|高血压|降三高|三高",
-            免疫力: "免疫力|抵抗力|抗病能力|防御力",
-            脚气: "脚气|脚癣|香港脚|足癣",
-            胃病: "胃炎|胃溃疡|胃癌|胃病",
-            幽门螺杆菌: "幽门螺杆菌|幽门螺旋杆菌|胃溃疡|胃癌|胃炎|胃病",
-            肠癌: "肠癌|结肠癌|直肠癌|结直肠癌|大肠癌",
-            老年痴呆: "痴呆|老年痴呆|阿尔茨海默|老痴",
-            腰间盘突出: "腰间盘|腰椎|腰椎间盘|腰痛|腰疼|腰突",
-            妇科炎症: "妇科炎症|妇科病|外阴炎|阴道炎|宫颈炎|盆腔炎",
-            妇科症状: "白带|分泌物|瘙痒|灼热|红肿|溃烂|异味",
-            腹泻: "腹泻|拉肚子|腹泄|泻肚|闹肚子|拉稀",
-            腹胀: "腹胀|胃胀|涨肚|胀肚",
-            消化不良: "消化不良|不消化|消化不好|肚子痛|肚子疼|腹痛|腹胀|胃胀|涨肚|胀肚|早饱|嗳气|食欲不振|恶心|呕吐",
-            补血: "补血|贫血",
-            排毒: "排毒|毒素",
-            清肠: "清肠道|清肠胃|清肠",
-            催乳: "催乳|下奶|催奶|下乳|通奶|通乳",
-            减肥: "减肥|减重|减脂|瘦身|燃脂|能瘦|变瘦|瘦了",
-            抗衰老: "衰老|抗衰|延长寿命|延年益寿|延寿|逆龄|长寿|不老|延年",
-            壮阳: "壮阳|提高性能力|性能力|补肾",
-            失眠: "失眠|失眠症",
-            美白: "美白|白皙|去黄|变白|祛黄|色素沉着|肤色不均",
-            祛斑: "暗斑|黑斑|斑点|祛斑|淡斑|老年斑|褐斑|雀斑|色素沉积",
-            长斑: "长斑|生斑|暗斑|黑斑|斑点|淡斑|老年斑|褐斑|雀斑|色素沉积",
-            祛皱: "祛皱|松弛|紧致|皱纹|鱼尾纹|细纹|去皱|去皱|法令纹|抗皱",
-            痘痘: "痘痘|祛痘|青春痘|痘痕|痘印|粉刺|白头|黑头",
-            抗氧化: "抗氧化|老化|初老|暗淡|粗糙|童颜|活化|暗沉",
-            保湿: "干燥|缺水|锁水|保湿|滋养|润泽|水润|光泽",
-            美容: "美容|美白|白皙|去黄|变白|祛黄|色素沉着|肤色不均|嫩肤",
-            白发: "黑发|白发|头发变黑|白头发",
-            抗辐射: "辐射|防辐射|辐射线|射线",
-
-        };
-        //全选
-        function task_todo_allcheck(name) {
-            var task_all = document.getElementsByName(name);
-            for (var i = 0; i < task_all.length; i++) {
-                task_all[i].checked = true;
-            }
+        function str_splice(first, mid, final) {
+            var first_str = document.getElementById(first).value
+            var final_str = document.getElementById(final).value
+            var mid_str = document.getElementById(mid).value.trim().split('\n')
+            var all_str = mid_str.map(function (knowledge) { return `${first_str}${knowledge}${final_str}` })
+            var longtext = all_str.join('\n')
+            document.getElementById(mid).value = all_str.join('\n')
         }
-        //词组多选功能，多选实现+格式化
-        function task_todo() {
-            var hobbies = document.getElementsByName("task_todo");
-            var value, key;
-            for (i = 0; i < hobbies.length; i++) {
-                if (hobbies[i].checked) {
-                    if (!value) {
-                        value = hobbies[i].value;
-                        key = p2p_name_skill[value];
-                    } else {
-                        value += "、" + hobbies[i].value;
-                        key += "|" + p2p_name_skill[hobbies[i].value];
-                    }
-                }
-            }
-            document.getElementById("vs").innerHTML =
-                "已选择词组：" + (value == undefined ? "" : value); //功效
-            document.getElementById("vs_1").innerHTML =
-                value == undefined ? "" : key; //关键词
+        function refresh() {
+            window.location.reload();
         }
-        //复制,暂未使用
-        $(document).ready(function () {
-            var clipboard = new Clipboard("#copy_btn");
-            clipboard.on("success", function (e) {
-                alert("复制成功", 1500);
-                e.clearSelection();
-                console.log(e.clearSelection);
-            });
-        });
     </script>
-
     <style>
         #url-id {
             resize: none;
-            width: 100%;
-            height: 500px;
-            font-size: 16px;
+            width: 99%;
+            height: 200px;
         }
 
         #left {
@@ -151,82 +81,49 @@
         #lines {
             width: 60px;
             text-align: center;
+            position: absolute;
+            right: 20px;
+            border:none;
+        }
+        legend
+    </style>
+    <style>
+        #str-mid {
+            position: relative;
+            resize: none;
+            width: 99%;
+            height: 200px;
+            border-radius: 1px;
+            -webkit-appearance: none;
+            outline: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
     </style>
 </head>
 
 <body>
-    <div id="left">
-        <button type="button" onclick="count_game_btn()" id="click-again">
-            0
-        </button>
-        <button type="button" onclick="open_url()" id="test-3">URL</button>
-        <button type="button" onclick="open_gid()" id="test-4">GID</button>
 
-        <input type="text" readonly="readonly" id="lines" />
-        <hr />
-        <textarea id="url-id" placeholder="用链接打开打开网址点URL，用gid打开网址点GID" onkeyup="count_row_text();"></textarea>
-    </div>
-    <div id="right">
+    <div id="left">
         <fieldset>
-            <legend>词组！</legend>
-            <p>
-                <label for="task_todo">
-                    <input type="checkbox" name="task_todo" value="抗癌" />抗癌
-                    <input type="checkbox" name="task_todo" value="致癌" />致癌
-                    <input type="checkbox" name="task_todo" value="痛风" />痛风
-                    <input type="checkbox" name="task_todo" value="降糖" />降糖
-                    <input type="checkbox" name="task_todo" value="降脂" />降脂
-                    <input type="checkbox" name="task_todo" value="降压" />降压
-                    <input type="checkbox" name="task_todo" value="降三高" />降三高
-                    <input type="checkbox" name="task_todo" value="消化不良" />消化不良
-                    <input type="checkbox" name="task_todo" value="老年痴呆" />老年痴呆<br><br>
-                    <input type="checkbox" name="task_todo" value="肠癌" />肠癌
-                    <input type="checkbox" name="task_todo" value="排毒" />排毒
-                    <input type="checkbox" name="task_todo" value="清肠" />清肠
-                    <input type="checkbox" name="task_todo" value="催乳" />催乳
-                    <input type="checkbox" name="task_todo" value="减肥" />减肥
-                    <input type="checkbox" name="task_todo" value="壮阳" />壮阳
-                    <input type="checkbox" name="task_todo" value="抗衰老" />抗衰老
-                    <input type="checkbox" name="task_todo" value="妇科炎症" />妇科炎症
-                    <input type="checkbox" name="task_todo" value="妇科症状" />妇科症状<br><br>
-                    <input type="checkbox" name="task_todo" value="失眠" />失眠
-                    <input type="checkbox" name="task_todo" value="补血" />补血
-                    <input type="checkbox" name="task_todo" value="脚气" />脚气
-                    <input type="checkbox" name="task_todo" value="胃病" />胃病
-                    <input type="checkbox" name="task_todo" value="腹泻" />腹泻
-                    <input type="checkbox" name="task_todo" value="腹胀" />腹胀
-                    <input type="checkbox" name="task_todo" value="免疫力" />免疫力
-                    <input type="checkbox" name="task_todo" value="腰间盘突出" />腰间盘突出
-                    <input type="checkbox" name="task_todo" value="幽门螺杆菌" />幽门螺杆菌
-                    <hr>
-                    <input type="checkbox" name="task_todo" value="美白" />美白
-                    <input type="checkbox" name="task_todo" value="祛斑" />祛斑
-                    <input type="checkbox" name="task_todo" value="长斑" />长斑
-                    <input type="checkbox" name="task_todo" value="祛皱" />祛皱
-                    <input type="checkbox" name="task_todo" value="痘痘" />痘痘
-                    <input type="checkbox" name="task_todo" value="保湿" />保湿
-                    <input type="checkbox" name="task_todo" value="美容" />美容
-                    <input type="checkbox" name="task_todo" value="白发" />白发
-                    <input type="checkbox" name="task_todo" value="抗辐射" />抗辐射
-                    <input type="checkbox" name="task_todo" value="抗氧化" />抗氧化
-                    <hr />
-                    <button type="button" class="line_1" value="组合"
-                        onclick="task_todo_allcheck('task_todo')">全选</button>
-                    <button type="button" class="line_1" value="组合" onclick="task_todo()">生成关键词</button>
-                    <button type="button" class="line_2" onclick="cleaner()">清空+返回后缀警告</button>
-                    <hr />
-                    <div id="vs">👉后缀警告！记得飘黄！</div><hr>
-                    <div id="vs_1">
-                        <p>，食物没有任何治疗疾病功效</p>
-                        <p>，食物没有任何预防疾病功效</p>
-                        <p>，食物没有任何治疗和预防功效</p>
-                        <p>，保健品不能代替药物预防或治疗疾病</p>
-                        <p>，养生茶不能代替药物预防或治疗疾病</p>
-                    </div>
-                </label>
-            </p>
+            <legend>URL和GID都可以打开</legend>
+            <textarea id="url-id" placeholder="用链接打开打开网址点URL，用gid打开网址点GID" onkeyup="count_row_text();"></textarea>
+            <button type="button" onclick="open_url()" id="test-3">打开URL</button>
+            <button type="button" onclick="open_gid()" id="test-4">打开GID</button>
+            <input type="text" readonly="readonly" id="lines" placeholder="共计0行"/>
         </fieldset>
+        <fieldset>
+            <legend>每句话两头加东西</legend>
+            <textarea id="str-mid" placeholder="在这里输入你想要加东西的句子，多句用换行（回车）间隔，表格类可直接整列复制过来"></textarea>
+            <input class="input-divright" type="text" id="str-first" placeholder="head text here!" value="“">
+            <input class="input-divright" type="text" id="str-final" placeholder="foot text here!" value="”是虚假">
+            <button id="str-splice" type="button" onclick="str_splice('str-first','str-mid','str-final')">确定</button>
+            <button id="refresh" onclick="refresh()">重置</button>
+
+        </fieldset>
+    </div>
+        
+    <div id="right">
+        
     </div>
 </body>
 

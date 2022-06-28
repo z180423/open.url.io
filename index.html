@@ -48,6 +48,18 @@
                 );
             }
         }
+         //打开TID数字格式的网址
+        function open_TID() {
+            var all_url = document.getElementById("url-id");
+            var every_url = all_url.value.split("\n");
+            for (var i = 0, len = every_url.length; i < len; i++) {
+                var url_n = every_url[i];
+                window.open(
+                    "https://tonghang.woa.com/v2q/human_quality_short/result/" +
+                    url_n
+                );
+            }
+        }
         //显示行数
         function count_row_text() {
             if(document.getElementById("url-id").value === ""){
@@ -122,6 +134,7 @@
             <button type="button" onclick="open_url()" id="test-3">打开URL</button>
             <button type="button" onclick="open_gid()" id="test-4">打开GID</button>
             <button type="button" onclick="open_CMSID()" id="test-5">打开CMSID</button>
+            <button type="button" onclick="open_TID()" id="test-6">打开TID</button>
             <input type="text" readonly="readonly" id="lines" placeholder="共计0行"/>
         </fieldset>
         <fieldset>
